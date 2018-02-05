@@ -1,4 +1,4 @@
-package com.iutbm.example.iutbm.couchot.healthybody.utils;
+package com.iut.gang.feigness.utils;
 
 import android.content.Context;
 import android.content.Intent;
