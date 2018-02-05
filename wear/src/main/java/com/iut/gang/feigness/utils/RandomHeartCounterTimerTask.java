@@ -27,8 +27,8 @@ public class RandomHeartCounterTimerTask extends TimerTask {
         heartCount = (int)(Math.random() * (higher-lower)) + lower;
         DailyHeart.updateSteps(heartCount);
         Intent intent = new Intent();
-        intent.setAction(stepService.STEP_COUNT_MESSAGE);
-        intent.putExtra(stepService.STEP_COUNT_VALUE,DailyHeart.getHeart());
+        intent.setAction(heartService.HEART_COUT_MESSAGE);
+        intent.putExtra(heartService.HEART_COUNT_VALUE,DailyHeart.getHeart());
         ctxt.sendBroadcast(intent);
     }
 }
