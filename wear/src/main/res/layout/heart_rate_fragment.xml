@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.iutbm.example.iutbm.couchot.healthybody.MainActivity"
+    tools:deviceIds="wear">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <com.iut.gang.feigness.utils.HeartBeatView
+            android:id="@+id/heartbeat"
+            android:layout_width="150dp"
+            android:layout_centerInParent="true"
+            android:layout_height="150dp"
+            android:foregroundGravity="center"
+            android:layout_gravity="center"/>
+        <TextView
+            android:textSize="@dimen/screen_percentage_15"
+            android:id="@+id/tvheartrate"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+
+
+
+    </RelativeLayout>
+</android.support.wear.widget.BoxInsetLayout>
