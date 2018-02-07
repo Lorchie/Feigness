@@ -71,6 +71,7 @@
             android:layout_marginTop="-10dp"
             android:textSize="@dimen/screen_percentage_15"
             android:id="@+id/tvheartrate"
+            android:textColor="@color/main_color"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
