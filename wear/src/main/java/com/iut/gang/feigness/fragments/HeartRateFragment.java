@@ -63,4 +63,8 @@ public class HeartRateFragment extends Fragment {
         this.getContext().unregisterReceiver(brStep);
         super.onPause();
     }
+
+    public void onClickMinus(){
+
+    }
 }

@@ -32,6 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".utils.heartService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".utils.WearHeartEmulatorService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
