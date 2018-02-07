@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#8569ff</color>
+    <color name="sub_color_blue">#2c2e48</color>
+    <color name="sub_color_pink">#ff6186</color>
+    <color name="background_color">#242536</color>
+</resources>
