@@ -7,16 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApp;
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.iut.gang.common.Session;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,14 +47,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //FirebaseApp.initializeApp(getApplicationContext());
 
+        Session s = new Session(1, " dofi");
 
-        SessionController s = new SessionController();
+        SessionController sessionController = new SessionController();
 
-        s.getAll(new ValueEventListener() {
+        sessionController.listenToSession(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Session session = dataSnapshot.getValue(Session.class);
+                mTextMessage.setText(session.getName());
             }
 
             @Override
@@ -58,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
+
 
 }
