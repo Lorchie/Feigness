@@ -17,8 +17,7 @@ public class SessionController {
 
     }
 
-
-    public void getAll(ValueEventListener valueEventListener)
+    public void listenToSession(ValueEventListener valueEventListener)
     {
         myRef.addValueEventListener(valueEventListener);
     }
