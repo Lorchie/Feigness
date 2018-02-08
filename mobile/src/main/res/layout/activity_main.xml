@@ -5,14 +5,14 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context="com.iut.gang.feigness.MainActivity">
 
     <TextView
         android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="174dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:textColor="@color/main_color"
         android:text="@string/title_home"
@@ -21,6 +21,7 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
+        android:backgroundTint="@color/sub_color_blue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
