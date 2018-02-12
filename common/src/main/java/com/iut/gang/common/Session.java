@@ -8,18 +8,24 @@ import java.util.ArrayList;
 
 public class Session {
 
-    public Integer id;
+    public String uid;
     public String name;
     private ArrayList<UserSession> userSessions;
 
-    public Session(int session_id, String name)
+    //Leave empty
+    public Session()
     {
-        this.id = session_id;
+
+    }
+
+    public Session(String uid, String name)
+    {
+        this.uid = uid;
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return uid;
     }
 
     public String getName() {
