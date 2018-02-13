@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_disconnect"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_full_cancel"
+        android:title="@string/action_peek_disconnect"
+        android:visible="true" />
+
+</menu>

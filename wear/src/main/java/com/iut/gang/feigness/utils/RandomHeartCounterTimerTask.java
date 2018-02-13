@@ -21,8 +21,8 @@ public class RandomHeartCounterTimerTask extends TimerTask {
     }
     @Override
     public void run() {
-        int lower = 60;
-        int higher = 80;
+        int lower = 68;
+        int higher = 72;
 
         heartCount = (int)(Math.random() * (higher-lower)) + lower;
         DailyHeart.updateSteps(heartCount);

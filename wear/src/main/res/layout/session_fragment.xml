@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -8,29 +9,93 @@
     tools:deviceIds="wear">
 
     <RelativeLayout
+        android:id="@+id/rel_lay_check"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:background="@color/background_color"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/imageViewCheck"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/ic_check" />
+
+        <Button
+            android:id="@+id/buttonJoinSession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageViewCheck"
+            android:layout_marginBottom="-7dp"
+            android:layout_marginLeft="-7dp"
+            android:layout_marginRight="-7dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/main_color"
+            android:fontFamily="sans-serif"
+            android:text="@string/wear_text_buttoin_join"
+            android:textColor="@color/white"
+            android:typeface="normal"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_lay_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:orientation="horizontal">
-        <com.iut.gang.feigness.utils.SessionView
-            android:id="@+id/heartbeat"
-            android:layout_width="150dp"
-            android:layout_centerInParent="true"
-            android:layout_height="150dp"
-            android:foregroundGravity="center"
-            android:layout_gravity="center"/>
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
         <EditText
-            android:textSize="@dimen/screen_percentage_15"
-            android:id="@+id/inputCode"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:id="@+id/inputPseudo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="center"
+            android:layout_marginTop="68dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="@string/textViewPseudo"
+            android:imeOptions="actionDone"
             android:inputType="number"
+            android:lineSpacingExtra="30sp"
+            android:singleLine="false"
+            android:textColor="@color/sub_color_pink"
+            android:textSize="14sp"
+            android:textStyle="bold"
             tools:ignore="LabelFor" />
 
-
+        <EditText
+            android:id="@+id/inputCode"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/inputPseudo"
+            android:layout_below="@+id/inputPseudo"
+            android:layout_gravity="center"
+            android:layout_marginTop="37dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="@string/textViewCode"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:singleLine="false"
+            android:textColor="@color/sub_color_pink"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="LabelFor" />
 
 
     </RelativeLayout>

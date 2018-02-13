@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/container_in_session"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
@@ -16,18 +16,8 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <com.iut.gang.feigness.utils.HeartBeatView
-            android:id="@+id/heartbeat"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_above="@+id/linearLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:alpha="1"
-            android:foregroundGravity="center" />
-
         <TextView
-            android:id="@+id/tvheartrate"
+            android:id="@+id/tvheartrate_in_session"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -40,7 +30,7 @@
 
         <LinearLayout
 
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_in_session"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -49,7 +39,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonMinus"
+                android:id="@+id/buttonMinus_in_session"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -66,7 +56,7 @@
                 android:textSize="@dimen/screen_percentage_15" />
 
             <Button
-                android:id="@+id/buttonPlus"
+                android:id="@+id/buttonPlus_in_session"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
