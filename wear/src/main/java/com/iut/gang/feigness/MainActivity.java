@@ -39,7 +39,7 @@ public class MainActivity extends WearableActivity implements
 
         // Top Navigation Drawer
         mWearableNavigationDrawer =
-                (WearableNavigationDrawerView) findViewById(R.id.top_navigation_drawer);
+                findViewById(R.id.top_navigation_drawer);
         mWearableNavigationDrawer.setAdapter(
                 new WearableNavigationDrawerView.WearableNavigationDrawerAdapter(){
 

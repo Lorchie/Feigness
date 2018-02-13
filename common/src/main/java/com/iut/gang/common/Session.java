@@ -1,6 +1,7 @@
 package com.iut.gang.common;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by guill on 07/02/2018.
@@ -10,6 +11,7 @@ public class Session {
 
     public String uid;
     public String name;
+    public String code;
     private ArrayList<UserSession> userSessions;
 
     //Leave empty
@@ -22,6 +24,9 @@ public class Session {
     {
         this.uid = uid;
         this.name = name;
+        Random random = new Random();
+        this.code = String.format("%04d", random.nextInt(999));
+        userSessions = new ArrayList<UserSession>();
     }
 
     public String getId() {
@@ -39,5 +44,9 @@ public class Session {
     public void addUser(UserSession userSession)
     {
         this.userSessions.add(userSession);
+    }
+
+    public String getCode() {
+        return code;
     }
 }

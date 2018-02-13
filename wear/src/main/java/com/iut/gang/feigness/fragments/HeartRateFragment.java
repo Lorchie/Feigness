@@ -33,7 +33,7 @@ public class HeartRateFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.heart_rate_fragment, container, false);
-        mTextView = (TextView) rootView.findViewById(R.id.tvheartrate);
+        mTextView = rootView.findViewById(R.id.tvheartrate);
         heartbeat = rootView.findViewById(R.id.heartbeat);
         final Animation pulse = AnimationUtils.loadAnimation(this.getContext(), R.anim.pulse);
         heartbeat.startAnimation(pulse);
