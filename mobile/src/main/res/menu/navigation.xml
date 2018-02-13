@@ -9,7 +9,4 @@
         android:id="@+id/navigation_profil"
         android:title="@string/title_profil" />
 
-
-
-
 </menu>

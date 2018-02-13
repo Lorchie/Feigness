@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.iut.gang.common.SessionController;
 import com.iut.gang.feigness.fragments.Fragment_profil;
 import com.iut.gang.feigness.fragments.Fragment_session_user;
 
@@ -49,8 +48,9 @@ public class MainActivity extends AppCompatActivity implements Fragment_profil.O
 
         //Session s = new Session(1, " dofi");
 
-        SessionController sessionController = new SessionController();
+        SessionController sessionController = new SessionController(this);
 
+        sessionController.findSessionWithCode("fdffd");
         
 
 
