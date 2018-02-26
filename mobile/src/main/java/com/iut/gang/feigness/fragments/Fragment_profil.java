@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.iut.gang.feigness.MainActivity;
 import com.iut.gang.feigness.R;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,10 +68,23 @@ public class Fragment_profil extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profil, container, false);
+        View view = inflater.inflate(R.layout.fragment_profil, container, false);
+         Button button = (Button) view.findViewById(R.id.btnCreatePseudo);
+        final EditText tp = (EditText) view.findViewById(R.id.new_pseudo);
+        System.out.println(button.getText());
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+
+                ((MainActivity) getActivity()).setPseudo(tp.getText().toString());
+                Log.d(TAG,((MainActivity) getActivity()).getPseudo() );
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
