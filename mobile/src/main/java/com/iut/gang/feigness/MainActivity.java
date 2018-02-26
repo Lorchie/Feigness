@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Fragment_profil.O
                     return true;
                 case R.id.navigation_profil:
                     fragmentManager =  getSupportFragmentManager().beginTransaction();
-                    
+
                     fragmentManager.replace(R.id.home_layout_container, new Fragment_profil()).commit();
                     return true;
             }
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements Fragment_profil.O
 
         SessionController sessionController = new SessionController(this);
 
+        fragmentManager = getSupportFragmentManager().beginTransaction();
 
+        fragmentManager.replace(R.id.home_layout_container, new Fragment_session_create_log()).commit();
         
 
 
