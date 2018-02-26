@@ -3,7 +3,8 @@ package com.iut.gang.feigness.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,9 @@ public class Fragment_session_coach extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,6 +62,17 @@ public class Fragment_session_coach extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            mRecyclerView = mRecyclerView.findViewById(R.id.my_recycler_view);
+            mRecyclerView.setHasFixedSize(true);
+
+//            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            // specify an adapter (see also next example)
+            //TODO: init data
+//            mAdapter = new MyAdapter(data);
+            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
