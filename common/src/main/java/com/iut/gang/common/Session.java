@@ -41,11 +41,16 @@ public class Session implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void addUser(UserSession userSession)
-    {
-        this.userSessions.add(userSession);
+    public void setId(String uid) {
+        this.uid = uid;
     }
+
+    public void addUser(String pseudo)
+    {
+        UserSession user=new UserSession("-1",0,pseudo);
+        this.userSessions.add(user);
+    }
+
 
     public String getCode() {
         return code;

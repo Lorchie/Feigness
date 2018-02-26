@@ -90,22 +90,7 @@ public class HeartRateFragment extends Fragment implements View.OnClickListener{
                 int rate=intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0);
                 System.out.println("Je recois coeur"+Integer.toString(intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0)));
                 int pulse=intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0);
-//                if(oldHeartBeatInt==0){
-//                    oldHeartBeatInt=pulse+cumulButton;
-//                }
-//                else {
-//                    int calcul=(pulse+cumulButton)-oldHeartBeatInt;
-//                    System.out.println(""+(calcul*(pulse+cumulButton))+" pulse:"+pulse+" cumul:"+cumulButton+" old:"+oldHeartBeatInt);
-//
-//                    if((calcul/1000)>0){
-//                        System.out.println(""+(60 /((pulse+cumulButton)-oldHeartBeatInt)));
-//                        heartbeat.getAnimation().scaleCurrentDuration(new Float(calcul/1000));
-//                    }
-//                    oldHeartBeatInt=pulse+cumulButton;
-//// heartbeat.getAnimation().scaleCurrentDuration(60 /((pulse+cumulButton)-oldHeartBeatInt));
-//                }
 
-//
                     heartlistener.heartRate=oldHeartBeatInt;
 
 //

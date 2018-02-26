@@ -69,7 +69,7 @@
             android:gravity="center"
             android:hint="@string/textViewPseudo"
             android:imeOptions="actionDone"
-            android:inputType="number"
+            android:inputType="text"
             android:lineSpacingExtra="30sp"
             android:singleLine="false"
             android:textColor="@color/sub_color_pink"
@@ -97,6 +97,26 @@
             android:textStyle="bold"
             tools:ignore="LabelFor" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/inputCode"
+        android:layout_marginBottom="-7dp"
+
+        android:layout_marginLeft="-7dp"
+        android:layout_marginRight="-7dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/main_color"
+        android:fontFamily="sans-serif"
+        android:text="@string/recherche_button"
+        android:textColor="@color/white"
+        android:typeface="normal"
+        android:visibility="visible" />
 
     </RelativeLayout>
+
 </android.support.wear.widget.BoxInsetLayout>

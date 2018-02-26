@@ -10,4 +10,5 @@
     <string name="textViewPseudo">Entrez votre pseudo</string>
     <string name="wear_text_buttoin_join">Rejoindre</string>
     <string name="action_peek_disconnect">Disconnect</string>
+    <string name="recherche_button">Rechercher</string>
 </resources>

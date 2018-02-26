@@ -1,6 +1,10 @@
 package com.iut.gang.feigness;
 
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.wear.widget.drawer.WearableActionDrawerView;
@@ -11,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.iut.gang.feigness.fragments.HeartRateFragment;
+import com.iut.gang.feigness.fragments.InSessionFragment;
 import com.iut.gang.feigness.fragments.SessionFragment;
 import com.iut.gang.feigness.utils.DrawerItem;
 import com.iut.gang.feigness.utils.SessionView;
@@ -26,6 +31,8 @@ public class MainActivity extends WearableActivity implements
     private WearableNavigationDrawerView mWearableNavigationDrawer;
     private ArrayList<DrawerItem> drawer_itemArrayList;
     private int mSelectedScreen;
+    private BroadcastReceiver br;
+    private FragmentManager fragmentManager;
 
 
 
@@ -38,7 +45,7 @@ public class MainActivity extends WearableActivity implements
         mSelectedScreen = 0;
 
         HeartRateFragment hrf= new HeartRateFragment();
-        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, hrf).commit();
 
         // Top Navigation Drawer
@@ -69,6 +76,18 @@ public class MainActivity extends WearableActivity implements
         // Peeks navigation drawer on the top.
         mWearableNavigationDrawer.getController().peekDrawer();
         mWearableNavigationDrawer.addOnItemSelectedListener(this);
+
+        this.br=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String code=intent.getStringExtra(SessionFragment.SESSION_CODE);
+                String pseudo=intent.getStringExtra(SessionFragment.SESSION_PSEUDO);
+                InSessionFragment inSessionFragment=new InSessionFragment();
+                inSessionFragment.setSessioncode(code);
+                inSessionFragment.setSessionpseudo(pseudo);
+                   fragmentManager.beginTransaction().replace(R.id.content_frame,inSessionFragment).commit();
+            }
+        };
     }
 
     private ArrayList<DrawerItem> initializeScreenSystem() {
@@ -102,6 +121,10 @@ public class MainActivity extends WearableActivity implements
                         .commit();
                 break;
             case ITEM_MENU_HEART_RATE:
+                if (getFragmentManager().getPrimaryNavigationFragment().getClass()==InSessionFragment.class){
+                    InSessionFragment frag= (InSessionFragment) getFragmentManager().getPrimaryNavigationFragment();
+                    frag.removeUser();
+                }
                 HeartRateFragment sectionFragment = new HeartRateFragment();
                 getFragmentManager()
                         .beginTransaction()
@@ -110,7 +133,17 @@ public class MainActivity extends WearableActivity implements
                 break;
         }
     }
+    public void onResume() {
 
+        this.registerReceiver(br,new IntentFilter(SessionFragment.SESSION_MESSAGE));
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        this.unregisterReceiver(br);
+        super.onPause();
+    }
 
 
 //    @Override

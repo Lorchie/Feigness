@@ -16,15 +16,29 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.iut.gang.common.Session;
+import com.iut.gang.common.SessionController;
+import com.iut.gang.common.UserSession;
 import com.iut.gang.feigness.R;
 import com.iut.gang.feigness.listener.TextChangedListener;
+import com.iut.gang.feigness.utils.DailyHeart;
+import com.iut.gang.feigness.utils.heartService;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by Victor on 07/02/2018.
@@ -33,9 +47,13 @@ import com.iut.gang.feigness.listener.TextChangedListener;
 public class SessionFragment  extends Fragment {
     private EditText editTextCode;
     private EditText editTextPseudo;
+    public static final String SESSION_MESSAGE = "message_session_";
+    public static final String SESSION_CODE = "code_session_";
+    public static final String SESSION_PSEUDO = "pseudo_session_";
     private com.iut.gang.feigness.utils.SessionView sessionView;
     private Intent heartServiceIntent;
     private BroadcastReceiver brStep;
+
 
     public SessionFragment() {
         // Required empty public constructor
@@ -46,29 +64,54 @@ public class SessionFragment  extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.session_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.session_fragment, container, false);
 
         //GET editTexts
         editTextCode=(EditText) rootView.findViewById(R.id.inputCode);
+
         editTextPseudo=(EditText) rootView.findViewById(R.id.inputPseudo);
         final RelativeLayout input= (RelativeLayout) rootView.findViewById(R.id.rel_lay_input);
         final RelativeLayout check= (RelativeLayout) rootView.findViewById(R.id.rel_lay_check);
 
-
-        editTextCode.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        Button buttonJoinSession = rootView.findViewById(R.id.button2);
+        buttonJoinSession.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_DONE && !editTextPseudo.getText().toString().equals("")) {
-                    // TODO do something
-                    Log.d("LOGGG", "onEditorAction: "+v.getText());
-//                    handled = true;
-                    input.setVisibility(View.INVISIBLE);
-                    check.setVisibility(View.VISIBLE);
-                     }
-                return handled;
+            public void onClick(View view) {
+                SessionController sess= new SessionController();
+                String text=editTextCode.getText().toString();
+
+                sess.findSessionWithCode(text, new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Session session= dataSnapshot.getValue(Session.class);
+                        if(session == null){
+                            System.out.println("Session introuvable");
+                            Toast.makeText(rootView.getContext(),"Session introuvable!",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }else {
+                            System.out.println("Session trouvée !!!!!!!!!!!!!!!!!");
+                            Intent intent = new Intent();
+                            intent.setAction(SESSION_MESSAGE);
+                            intent.putExtra(SESSION_CODE,editTextCode.getText().toString());
+                            intent.putExtra(SESSION_PSEUDO,editTextPseudo.getText().toString());
+//                            session.addUser(new UserSession());
+                            rootView.getContext().sendBroadcast(intent);
+
+                        }
+                    }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+//
             }
         });
+//
+
         //TODO verify if in session
         if(!isInSession()){
 

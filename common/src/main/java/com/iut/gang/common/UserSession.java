@@ -5,21 +5,29 @@ package com.iut.gang.common;
  */
 
 public class UserSession {
-    private int user_id;
+    private String user_id;
     private int heartBeat;
+    private String pseudo;
 
 
-    public UserSession(int user_id, int heartBeat)
+    public UserSession(String user_id, int heartBeat,String pseudo)
     {
         this.user_id = user_id;
         this.heartBeat = heartBeat;
+        this.pseudo=pseudo;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
     public int getHeartBeat() {
         return heartBeat;
+    }
+
+    public String getPseudo() { return pseudo; }
+
+    public void setId(String id) {
+        this.user_id = id;
     }
 }
