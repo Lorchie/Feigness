@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity implements Fragment_profil.O
             switch (item.getItemId()) {
                 case R.id.navigation_session:
                     fragmentManager = getSupportFragmentManager().beginTransaction();
-                    fragmentManager.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+
                     fragmentManager.replace(R.id.home_layout_container, new Fragment_session_create_log()).commit();
                     return true;
                 case R.id.navigation_profil:
                     fragmentManager =  getSupportFragmentManager().beginTransaction();
-                    fragmentManager.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                    
                     fragmentManager.replace(R.id.home_layout_container, new Fragment_profil()).commit();
                     return true;
             }
