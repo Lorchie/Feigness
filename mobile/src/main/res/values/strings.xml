@@ -6,7 +6,10 @@
     <string name="title_session">Session</string>
     <string name="tilte_logSession">Nouvelle Session</string>
     <string name="title_profil">Profil</string>
+    <string name="text_createSession">Crée une session</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_logSession">Join</string>
+    <string name="btn_createSession">Create</string>
 </resources>
