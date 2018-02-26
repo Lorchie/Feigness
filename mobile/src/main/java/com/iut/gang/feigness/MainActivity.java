@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 import com.iut.gang.common.SessionController;
 import com.iut.gang.feigness.fragments.Fragment_profil;
+import com.iut.gang.feigness.fragments.Fragment_session_create_log;
 import com.iut.gang.feigness.fragments.Fragment_session_user;
 
-public class MainActivity extends AppCompatActivity implements Fragment_profil.OnFragmentInteractionListener, Fragment_session_user.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements Fragment_profil.OnFragmentInteractionListener, Fragment_session_create_log.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     android.support.v4.app.FragmentTransaction fragmentManager;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements Fragment_profil.O
                 case R.id.navigation_session:
                     fragmentManager = getSupportFragmentManager().beginTransaction();
                     fragmentManager.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-                    fragmentManager.replace(R.id.home_layout_container, new Fragment_session_user()).commit();
+                    fragmentManager.replace(R.id.home_layout_container, new Fragment_session_create_log()).commit();
                     return true;
                 case R.id.navigation_profil:
                     fragmentManager =  getSupportFragmentManager().beginTransaction();
