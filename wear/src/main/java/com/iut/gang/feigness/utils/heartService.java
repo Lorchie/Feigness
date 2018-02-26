@@ -15,6 +15,7 @@ import static com.google.android.gms.wearable.DataMap.TAG;
 public class heartService extends Service implements SensorEventListener{
     public static final String HEART_COUT_MESSAGE = "dd";
     public static final String HEART_COUNT_VALUE = "ff";
+
     private SensorManager sensorManager;
      private Sensor countSensor;
 

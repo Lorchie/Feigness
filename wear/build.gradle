@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
@@ -29,7 +30,11 @@ dependencies {
     implementation 'com.android.support:wear:27.0.2'
     compileOnly 'com.google.android.wearable:wearable:2.2.0'
     implementation 'com.android.support:support-annotations:27.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

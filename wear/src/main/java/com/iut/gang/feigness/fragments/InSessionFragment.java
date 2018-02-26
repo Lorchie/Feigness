@@ -6,23 +6,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.wear.widget.drawer.WearableActionDrawerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.iut.gang.feigness.R;
 import com.iut.gang.feigness.listener.HeartListener;
 
+/**
+ * Created by Vicou96 on 10/02/2018.
+ */
 
-public class HeartRateFragment extends Fragment implements View.OnClickListener{
-
+public class InSessionFragment extends Fragment implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
     private TextView mTextView;
     private com.iut.gang.feigness.utils.HeartBeatView heartbeat;
     private Intent heartServiceIntent;
@@ -32,56 +38,39 @@ public class HeartRateFragment extends Fragment implements View.OnClickListener{
     private Button buttonPlus;
     private HeartListener heartlistener;
     private int oldHeartBeatInt;
+    private WearableActionDrawerView actionDrawerViewDisconnect;
 
-    public HeartRateFragment() {
+
+    public InSessionFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         this.cumulButton=0;
         this.oldHeartBeatInt=0;
         heartlistener=new HeartListener();
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.heart_rate_fragment, container, false);
-        mTextView = rootView.findViewById(R.id.tvheartrate);
-        heartbeat = rootView.findViewById(R.id.heartbeat);
+        View rootView = inflater.inflate(R.layout.in_session_fragment, container, false);
+        mTextView = (TextView) rootView.findViewById(R.id.tvheartrate_in_session);
+        actionDrawerViewDisconnect=rootView.findViewById(R.id.bottom_action_drawer);
+        actionDrawerViewDisconnect.getController().closeDrawer();
+        actionDrawerViewDisconnect.setOnMenuItemClickListener(this);
 
-        buttonMinus=rootView.findViewById(R.id.buttonMinus);
-        buttonPlus=rootView.findViewById(R.id.buttonPlus);
+        buttonMinus=rootView.findViewById(R.id.buttonMinus_in_session);
+        buttonPlus=rootView.findViewById(R.id.buttonPlus_in_session);
         buttonMinus.setOnClickListener(this);
         buttonPlus.setOnClickListener(this);
 
-         Animation pulse = AnimationUtils.loadAnimation(this.getContext(), R.anim.pulse);
-         pulse.setAnimationListener(heartlistener);
+        Animation pulse = AnimationUtils.loadAnimation(this.getContext(), R.anim.pulse);
+        pulse.setAnimationListener(heartlistener);
 
-//        pulse.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//                System.out.println("Start");
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                System.out.println("End");
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//                System.out.println("Repeat");
-//            }
-//        });
-//        AlphaAnimation animation2 = new AlphaAnimation(1.0f, 0.0f);
-//        animation2.setDuration(1000);
-//        animation2.setStartOffset(5000);
 
         heartbeat.startAnimation(pulse);
-//        ScaleAnimation scaleAnimation=new ScaleAnimation(0.0f,2.5f,0.0f,0.0f,50,50);
-//        scaleAnimation.setDuration(1000);
-//        scaleAnimation.setStartOffset(5000);
-//        heartbeat.startAnimation(scaleAnimation);
+
 
         heartServiceIntent = new Intent(getActivity(), com.iut.gang.feigness.utils.WearHeartEmulatorService.class);
         brStep=new BroadcastReceiver() {
@@ -90,26 +79,8 @@ public class HeartRateFragment extends Fragment implements View.OnClickListener{
                 int rate=intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0);
                 System.out.println("Je recois coeur"+Integer.toString(intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0)));
                 int pulse=intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0);
-//                if(oldHeartBeatInt==0){
-//                    oldHeartBeatInt=pulse+cumulButton;
-//                }
-//                else {
-//                    int calcul=(pulse+cumulButton)-oldHeartBeatInt;
-//                    System.out.println(""+(calcul*(pulse+cumulButton))+" pulse:"+pulse+" cumul:"+cumulButton+" old:"+oldHeartBeatInt);
-//
-//                    if((calcul/1000)>0){
-//                        System.out.println(""+(60 /((pulse+cumulButton)-oldHeartBeatInt)));
-//                        heartbeat.getAnimation().scaleCurrentDuration(new Float(calcul/1000));
-//                    }
-//                    oldHeartBeatInt=pulse+cumulButton;
-//// heartbeat.getAnimation().scaleCurrentDuration(60 /((pulse+cumulButton)-oldHeartBeatInt));
-//                }
 
-//
-                    heartlistener.heartRate=oldHeartBeatInt;
-
-//
-
+                heartlistener.heartRate=oldHeartBeatInt;
 
                 mTextView.setText(Integer.toString(intent.getIntExtra(com.iut.gang.feigness.utils.heartService.HEART_COUNT_VALUE,0)+cumulButton) );
 
@@ -145,5 +116,10 @@ public class HeartRateFragment extends Fragment implements View.OnClickListener{
                 this.cumulButton+=5;
                 break;
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        return false;
     }
 }

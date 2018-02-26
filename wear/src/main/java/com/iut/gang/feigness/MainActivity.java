@@ -3,8 +3,12 @@ package com.iut.gang.feigness;
 import android.app.FragmentManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.wear.widget.drawer.WearableActionDrawerView;
 import android.support.wear.widget.drawer.WearableNavigationDrawerView;
 import android.support.wearable.activity.WearableActivity;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.iut.gang.feigness.fragments.HeartRateFragment;
 import com.iut.gang.feigness.fragments.SessionFragment;
@@ -14,7 +18,7 @@ import com.iut.gang.feigness.utils.SessionView;
 import java.util.ArrayList;
 
 public class MainActivity extends WearableActivity implements
-        WearableNavigationDrawerView.OnItemSelectedListener{
+        WearableNavigationDrawerView.OnItemSelectedListener {
 
     public final static int ITEM_MENU_HEART_RATE=0;
     private static final int ITEM_MENU_SESSION = 1;
@@ -107,9 +111,12 @@ public class MainActivity extends WearableActivity implements
         }
     }
 
+
+
 //    @Override
 //    public AmbientMode.AmbientCallback getAmbientCallback() {
 //        return null;
 //    }
+
 }
 

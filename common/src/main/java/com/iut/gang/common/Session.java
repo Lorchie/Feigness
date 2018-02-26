@@ -1,5 +1,6 @@
 package com.iut.gang.common;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,7 +8,7 @@ import java.util.Random;
  * Created by guill on 07/02/2018.
  */
 
-public class Session {
+public class Session implements Serializable {
 
     public String uid;
     public String name;

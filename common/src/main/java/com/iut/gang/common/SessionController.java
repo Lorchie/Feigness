@@ -1,5 +1,7 @@
 package com.iut.gang.common;
 
+import android.app.Activity;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -14,9 +16,10 @@ public class SessionController {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("sessionsFitness");
+    Activity activity;
 
 
-    public SessionController()
+    public SessionController(Activity activity)
     {
 
     }
@@ -30,10 +33,11 @@ public class SessionController {
         return session;
     }
 
-    public void findSessionWithCode(String code, ChildEventListener valueEventListener)
+    public void findSessionWithCode(String code, ChildEventListener childEventListener)
     {
         Query query = myRef.orderByChild("code").equalTo(code);
-        query.addChildEventListener(valueEventListener);
+        query.addChildEventListener(childEventListener);
+
     }
 
     public void addUserToSession(Session session, UserSession user)
@@ -47,6 +51,4 @@ public class SessionController {
     {
         myRef.child(session.getId()).addValueEventListener(valueEventListener);
     }
-
-
 }
